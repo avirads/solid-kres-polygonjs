@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta property="og:title" content="default" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="./polygonjs\screenshots\scenes\default\poster.png" />
+		<meta property="og:url" content="https://polygonjs.com" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="og:description" content="a WebGL experience created with @polygonjs" />
+		<meta property="og:site_name" content="a WebGL experience created with @polygonjs" />
+		<meta name="twitter:image:alt" content="a WebGL experience created with @polygonjs" />
+		<meta name="twitter:site" content="@polygonjs" />
+		<title>default</title>
+
+		<style id="polygonjs-default">
+			html,
+			body,
+			.polygonjs-app {
+				margin: 0px;
+				height: 100%;
+				overflow: hidden;
+				display: block;
+			}
+			.polygonjs-app canvas {
+				display: block;
+				height: 100%;
+				user-select: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+			}
+			.polygonjs-app canvas.active {
+				cursor: pointer;
+			}
+		</style>
+
+		<style id="polygonjs-progress-bar-stylesheet">
+			/* POSTER */
+			#polygonjs-loading-poster {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 100%;
+				width: 100%;
+			}
+			#polygonjs-loading-poster {
+				pointer-events: none;
+				background: url('./polygonjs\screenshots\scenes\default\poster.png') no-repeat center center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				opacity: 1;
+				transition: opacity 0.8s ease-in-out;
+				-webkit-transition: opacity 0.8s ease-in-out;
+				-moz-transition: opacity 0.8s ease-in-out;
+				-ms-transition: opacity 0.8s ease-in-out;
+				-o-transition: opacity 0.8s ease-in-out;
+			}
+			#polygonjs-loading-poster.fade-out {
+				opacity: 0;
+			}
+
+			/* PROGRESS BAR */
+			.polygonjs-progress-bar-container {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 8px;
+				pointer-events: none;
+			}
+			.polygonjs-progress-bar-container .polygonjs-progress-bar {
+				height: 100%;
+				width: 0%;
+				animation-name: progress-bar-color;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+			}
+			.fadeable {
+				opacity: 1;
+				transition: opacity 0.5s ease-in-out;
+			}
+			.visible {
+				opacity: 1;
+			}
+			.hidden {
+				opacity: 0;
+			}
+
+			@keyframes progress-bar-color {
+				0% {
+					background-color: rgb(115, 214, 115);
+				}
+				50% {
+					background-color: rgb(60, 60, 211);
+				}
+				100% {
+					background-color: rgb(115, 214, 115);
+				}
+			}
+		</style>
+
+		<script id="load-scene-default" type="module">
+			import {loadSceneAndMount_default} from './polygonjs/js/default/index.js';
+
+			const container = document.getElementById('polygonjs-progress-bar-container');
+			const barElement = document.getElementById('polygonjs-progress-bar');
+			const poster = document.getElementById('polygonjs-loading-poster');
+			const updateProgressBar = function updateProgressBarTop(progress) {
+				if (!(barElement && container && poster)) {
+					console.log('progress bar elements missing', barElement, container, poster);
+					return;
+				}
+				if (progress < 1) {
+					const percent = Math.round(progress * 100) + '%';
+					barElement.style.width = percent;
+				} else {
+					// when we reach 1, we can remove the progress bar and fade out the poster
+					if (container.parentElement) {
+						container.parentElement.removeChild(container);
+					}
+					if (poster) {
+						poster.classList.add('fade-out');
+						setTimeout(() => {
+							if (poster.parentElement) {
+								poster.parentElement.removeChild(poster);
+							}
+						}, 1200);
+					}
+				}
+			};
+
+			function onProgress(progress) {
+				if (window.POLY && window.POLY.onLoadingProgress_default) {
+					window.POLY.onLoadingProgress_default(progress);
+				}
+				updateProgressBar(progress);
+			}
+
+			document.addEventListener('DOMContentLoaded', async () => {
+				const domElement = document.getElementById('polygonjs-app-default');
+				if (!domElement) {
+					console.error("element 'polygonjs-app-default' not found");
+					return;
+				}
+				const loadedData = await loadSceneAndMount_default({
+					autoPlay: true,
+					onProgress,
+					domElement,
+					publicPath: './',
+				});
+				if (window.POLY && window.POLY.onSceneReady_default) {
+					window.POLY.onSceneReady_default(loadedData);
+				}
+			});
+		</script>
+		<link rel="preload" href="./polygonjs\screenshots\scenes\default\poster.png" as="image" />
+		<link rel="preload" href="polygonjs\js\default\index.js?t=1685334973662" as="script" crossorigin />
+		<link rel="preload" href="polygonjs\js\default\chunk-NLMHZ7JJ.js" as="script" crossorigin />
+		<link rel="preload" href="polygonjs\js\default\chunk-V44IV2P3.js" as="script" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\root.json?t=1685271802372" as="fetch" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\properties.json?t=1685334973667" as="fetch" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\root\geo1.json?t=1685271802372" as="fetch" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\root\geo1\MAT.json?t=1685271802372" as="fetch" crossorigin />
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\physicsPlayer1.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\cameraControls_PLAYER1.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\physicsWorld1.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link rel="preload" href="polygonjs\scenes\default\root\lights.json?t=1685271802372" as="fetch" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\root\cameras.json?t=1685271802372" as="fetch" crossorigin />
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\cameras\cameraControls1.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link rel="preload" href="polygonjs\scenes\default\root\env.json?t=1685271802372" as="fetch" crossorigin />
+		<link rel="preload" href="polygonjs\scenes\default\root\env\MAT.json?t=1685271802372" as="fetch" crossorigin />
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.json?t=1685271802372"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDepthMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDepthMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDistanceMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDistanceMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDepthDOFMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_GROUND.customDepthDOFMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDepthMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDepthMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDistanceMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDistanceMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDepthDOFMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_PLAYER.customDepthDOFMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDepthMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDepthMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDistanceMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDistanceMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDepthDOFMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\geo1\MAT\meshStandardBuilder_BLOCKS.customDepthDOFMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDepthMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDepthMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDistanceMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDistanceMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDepthDOFMaterial.vertex.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="polygonjs\scenes\default\root\env\MAT\meshLambertBuilder_INSTANCES.customDepthDOFMaterial.fragment.glsl?t=1685272363188"
+			as="fetch"
+			crossorigin
+		/>
+	</head>
+	<body>
+		<div id="polygonjs-app-default" class="polygonjs-app"></div>
+
+		<div id="polygonjs-loading-poster"></div>
+		<div id="polygonjs-progress-bar-container" class="polygonjs-progress-bar-container fadeable">
+			<div id="polygonjs-progress-bar" class="polygonjs-progress-bar"></div>
+		</div>
+	</body>
+	<script>
+		document.addEventListener('POLYSceneReady', (event) => {
+			window.scene = event.detail.scene;
+		});
+		// you can uncomment the following to have access to the viewer globally
+		// document.addEventListener('POLYViewerMounted', (event)=>{
+		// 	window.viewer = event.detail.viewer;
+		// })
+	</script>
+</html>

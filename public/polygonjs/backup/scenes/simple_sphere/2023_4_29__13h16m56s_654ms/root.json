@@ -1,0 +1,7 @@
+{
+	"type": "root",
+	"nodes": {},
+	"params": {
+		"mainCameraPath": "/camera/camera:sopGroup/perspectiveCamera_FPS"
+	}
+}

@@ -1,0 +1,62 @@
+// insert defines
+class CustomActorEvaluator extends ActorEvaluator {
+	// insert members
+
+	// /geo1/physicsPlayer1/setPlayerInput1
+	v_POLY_setPlayerInput1_left = computed(() => getPlayerInputDataLeft(this.object3D));
+	v_POLY_setPlayerInput1_right = computed(() => getPlayerInputDataRight(this.object3D));
+	v_POLY_setPlayerInput1_forward = computed(() => getPlayerInputDataForward(this.object3D));
+	v_POLY_setPlayerInput1_backward = computed(() => getPlayerInputDataBackward(this.object3D));
+	v_POLY_setPlayerInput1_jump = computed(() => getPlayerInputDataJump(this.object3D));
+	v_POLY_setPlayerInput1_run = computed(() => getPlayerInputDataRun(this.object3D));
+
+	constructor(scene, object3D) {
+		super(scene, object3D);
+		// insert after constructor
+	}
+	// insert body
+
+	onTick() {
+		this.onTick1();
+	}
+	onKey() {
+		this.onKey1();
+	}
+	// /geo1/physicsPlayer1/onTick1
+	onTick1() {
+		this.physicsPlayerUpdate1(0);
+	}
+
+	// /geo1/physicsPlayer1/onKey1
+	onKey1() {
+		if (keyboardEventMatchesConfig("Space ShiftLeft ShiftRight KeyW KeyA KeyS KeyD", 0.0, 0.0, 0.0, 0.0) == false) {
+			return;
+		}
+		this.setPlayerInput1(0);
+	}
+
+	// /geo1/physicsPlayer1/physicsPlayerUpdate1
+	physicsPlayerUpdate1() {
+		playerPhysicsUpdate(this.object3D, {
+			left: this.v_POLY_setPlayerInput1_left.value,
+			right: this.v_POLY_setPlayerInput1_right.value,
+			backward: this.v_POLY_setPlayerInput1_backward.value,
+			forward: this.v_POLY_setPlayerInput1_forward.value,
+			run: this.v_POLY_setPlayerInput1_run.value,
+			jump: this.v_POLY_setPlayerInput1_jump.value,
+			speed: 0.5,
+			runAllowed: true,
+			runSpeedMult: 3.0,
+			jumpAllowed: true,
+			jumpStrength: 0.2,
+			resetIfBelowThreshold: true,
+			resetThreshold: -5.0,
+		});
+	}
+
+	// /geo1/physicsPlayer1/setPlayerInput1
+	setPlayerInput1() {
+		setPlayerInput(this.object3D, true);
+	}
+}
+return CustomActorEvaluator;

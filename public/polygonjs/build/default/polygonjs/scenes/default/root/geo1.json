@@ -1,0 +1,308 @@
+{
+	"type": "geo",
+	"nodes": {
+		"tube1": {
+			"type": "tube",
+			"params": {
+				"radiusTop": 20,
+				"radiusBottom": 20,
+				"segmentsRadial": 42,
+				"direction": [0, 1, 0]
+			}
+		},
+		"sphere_PLAYER1": {
+			"type": "sphere",
+			"params": {
+				"radius": 0.5
+			}
+		},
+		"material3": {
+			"type": "material",
+			"params": {
+				"material": "../MAT/meshStandardBuilder_PLAYER"
+			},
+			"inputs": ["sphere_PLAYER1"]
+		},
+		"transform_PLAYER1": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"t": [16, 3, 0]
+			},
+			"inputs": ["material3"]
+		},
+		"perspectiveCamera_PLAYER1": {
+			"type": "perspectiveCamera",
+			"params": {
+				"near": 1,
+				"far": 200,
+				"position": [20, 5, 5]
+			}
+		},
+		"merge1": {
+			"type": "merge",
+			"inputs": ["material2", "physicsPlayer1", "material4"]
+		},
+		"physicsRBDAttributes1": {
+			"type": "physicsRBDAttributes",
+			"params": {
+				"RBDType": 0,
+				"colliderType": 3,
+				"density": 0
+			},
+			"inputs": ["transform7"]
+		},
+		"box1": {
+			"type": "box",
+			"params": {
+				"sizes": [5.6, 1, 2.6]
+			}
+		},
+		"transform1": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"t": [5.762438866392688, 0.42897260989771535, 0],
+				"r": [0, 0, -26.863767168590133]
+			},
+			"inputs": ["box1"]
+		},
+		"merge2": {
+			"type": "merge",
+			"inputs": ["physicsRBDAttributes1", "physicsRBDAttributes2", "physicsRBDAttributes4"]
+		},
+		"material2": {
+			"type": "material",
+			"params": {
+				"material": "../MAT/meshStandardBuilder_GROUND"
+			},
+			"inputs": ["merge2"]
+		},
+		"transform2": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"objectMode": 1,
+				"r": [0, 180, 0]
+			},
+			"inputs": ["transform1"]
+		},
+		"merge3": {
+			"type": "merge",
+			"inputs": ["transform1", "transform2"]
+		},
+		"physicsRBDAttributes2": {
+			"type": "physicsRBDAttributes",
+			"params": {
+				"RBDType": 0,
+				"density": 0,
+				"restitution": 0
+			},
+			"inputs": ["merge3"]
+		},
+		"physicsRBDAttributes3": {
+			"type": "physicsRBDAttributes",
+			"params": {
+				"RBDType": 0,
+				"density": 0
+			},
+			"inputs": ["transform4"]
+		},
+		"capsule1": {
+			"type": "capsule",
+			"params": {
+				"height": 0.96
+			}
+		},
+		"copy1": {
+			"type": "copy",
+			"params": {
+				"count": 12,
+				"r": [0, 0, 30.3]
+			},
+			"inputs": ["transform3"]
+		},
+		"transform3": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"t": [2.0521303434636384, 0, 0]
+			},
+			"inputs": ["capsule1"]
+		},
+		"physicsRBDAttributes4": {
+			"type": "physicsRBDAttributes",
+			"params": {
+				"RBDType": 0,
+				"colliderType": 2,
+				"density": 0
+			},
+			"inputs": ["physicsRBDAttributes3"]
+		},
+		"transform4": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"objectMode": 1,
+				"t": [0, 4.34290213912606, 0],
+				"r": [0, 90, 0]
+			},
+			"inputs": ["copy1"]
+		},
+		"tube2": {
+			"type": "tube",
+			"params": {
+				"radiusTop": 0.49,
+				"radiusBottom": "ch(\"radiusTop\")",
+				"height": 1.5,
+				"segmentsRadial": 17,
+				"direction": [0, 1, 0]
+			}
+		},
+		"hexagons1": {
+			"type": "hexagons",
+			"params": {
+				"size": [2, 2],
+				"hexagonRadius": 0.22078,
+				"pointsOnly": 1
+			}
+		},
+		"tube3": {
+			"type": "tube",
+			"params": {
+				"segmentsRadial": 3,
+				"center": [0, -0.21229630632230734, 0],
+				"direction": [0, 1, 0]
+			}
+		},
+		"delete1": {
+			"type": "delete",
+			"params": {
+				"invert": 1,
+				"byBoundingObject": 1
+			},
+			"inputs": ["hexagons1", "tube3"]
+		},
+		"transform5": {
+			"type": "transform",
+			"params": {
+				"t": ["-$CEX", 0, "-$CEZ"],
+				"scale": 5
+			},
+			"inputs": ["delete1"]
+		},
+		"copy2": {
+			"type": "copy",
+			"inputs": ["tube2", "transform5"]
+		},
+		"physicsRBDAttributes5": {
+			"type": "physicsRBDAttributes",
+			"params": {
+				"colliderType": 3
+			},
+			"inputs": ["transform6"]
+		},
+		"transform6": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"objectMode": 1,
+				"t": [0, "ch(\"../tube2/height\")/2", -10.059028553330194]
+			},
+			"inputs": ["copy2"]
+		},
+		"transform7": {
+			"type": "transform",
+			"params": {
+				"applyOn": 1,
+				"t": [0, -0.5, 0]
+			},
+			"inputs": ["tube1"]
+		},
+		"material4": {
+			"type": "material",
+			"params": {
+				"material": "../MAT/meshStandardBuilder_BLOCKS"
+			},
+			"inputs": ["physicsRBDAttributes5"]
+		},
+		"cameraFrameMode1": {
+			"type": "cameraFrameMode",
+			"params": {
+				"frameMode": 2,
+				"expectedAspectRatio": 2
+			},
+			"inputs": ["perspectiveCamera_PLAYER1"]
+		}
+	},
+	"params": {
+		"CADLinearTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADAngularTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADCurveAbscissa": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADCurveTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADDisplayEdges": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADEdgesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADDisplayMeshes": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADMeshesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADWireframe": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGFacetAngle": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGLinesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGMeshesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGWireframe": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		}
+	},
+	"flags": {
+		"display": true
+	}
+}

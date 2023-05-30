@@ -1,0 +1,10 @@
+{
+	"frame": 22052,
+	"maxFrame": 600,
+	"maxFrameLocked": false,
+	"realtimeState": true,
+	"mainCameraPath": "/geo1/geo1:sopGroup/physicsWorld1/perspectiveCamera_PLAYER1",
+	"versions": {
+		"polygonjs": "1.4.15"
+	}
+}

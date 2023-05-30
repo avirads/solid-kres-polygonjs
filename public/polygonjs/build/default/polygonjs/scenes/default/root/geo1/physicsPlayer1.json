@@ -1,0 +1,107 @@
+{
+	"type": "physicsPlayer",
+	"nodes": {
+		"physicsPlayerUpdate1": {
+			"type": "physicsPlayerUpdate",
+			"maxInputsCount": 15,
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "trigger",
+					"node": "onTick1",
+					"output": "trigger"
+				},
+				null,
+				{
+					"index": 2,
+					"inputName": "left",
+					"node": "setPlayerInput1",
+					"output": "left"
+				},
+				{
+					"index": 3,
+					"inputName": "right",
+					"node": "setPlayerInput1",
+					"output": "right"
+				},
+				{
+					"index": 4,
+					"inputName": "backward",
+					"node": "setPlayerInput1",
+					"output": "backward"
+				},
+				{
+					"index": 5,
+					"inputName": "forward",
+					"node": "setPlayerInput1",
+					"output": "forward"
+				},
+				{
+					"index": 6,
+					"inputName": "run",
+					"node": "setPlayerInput1",
+					"output": "run"
+				},
+				{
+					"index": 7,
+					"inputName": "jump",
+					"node": "setPlayerInput1",
+					"output": "jump"
+				}
+			]
+		},
+		"onTick1": {
+			"type": "onTick"
+		},
+		"setPlayerInput1": {
+			"type": "setPlayerInput",
+			"maxInputsCount": 2,
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "trigger",
+					"node": "onKey1",
+					"output": "trigger"
+				}
+			]
+		},
+		"onKey1": {
+			"type": "onKey",
+			"params": {
+				"keyCodes": "Space ShiftLeft ShiftRight KeyW KeyA KeyS KeyD"
+			}
+		}
+	},
+	"params": {
+		"restitution": 0
+	},
+	"inputs": ["transform_PLAYER1", "cameraControls_PLAYER1"],
+	"persisted_config": {
+		"variableNames": [],
+		"variables": [],
+		"functionNames": [
+			"getPlayerInputDataLeft",
+			"getPlayerInputDataRight",
+			"getPlayerInputDataForward",
+			"getPlayerInputDataBackward",
+			"getPlayerInputDataJump",
+			"getPlayerInputDataRun",
+			"keyboardEventMatchesConfig",
+			"playerPhysicsUpdate",
+			"setPlayerInput"
+		],
+		"serializedParamConfigs": [],
+		"eventDatas": [
+			{
+				"type": "keydown",
+				"emitter": "canvas",
+				"jsType": "onKey"
+			},
+			{
+				"type": "keyup",
+				"emitter": "canvas",
+				"jsType": "onKey"
+			}
+		]
+	}
+}

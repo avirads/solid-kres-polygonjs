@@ -1,0 +1,289 @@
+{
+	"type": "meshLambertBuilder",
+	"nodes": {
+		"instanceTransform1": {
+			"type": "instanceTransform"
+		},
+		"output1": {
+			"type": "output",
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "position",
+					"node": "instanceTransform1",
+					"output": "position"
+				},
+				{
+					"index": 1,
+					"inputName": "normal",
+					"node": "instanceTransform1",
+					"output": "normal"
+				},
+				{
+					"index": 2,
+					"inputName": "color",
+					"node": "hsvToRgb1",
+					"output": "rgb"
+				}
+			]
+		},
+		"globals1": {
+			"type": "globals"
+		},
+		"attribute1": {
+			"type": "attribute",
+			"params": {
+				"name": "id"
+			},
+			"connection_points": {
+				"in": [],
+				"out": [
+					{
+						"name": "val",
+						"type": "float"
+					}
+				]
+			}
+		},
+		"round1": {
+			"type": "round",
+			"params": {
+				"in": {
+					"type": "float",
+					"default_value": 0,
+					"options": {
+						"spare": true,
+						"editable": false
+					}
+				}
+			},
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "in",
+					"node": "attribute1",
+					"output": "val"
+				}
+			],
+			"connection_points": {
+				"in": [
+					{
+						"name": "in",
+						"type": "float"
+					}
+				],
+				"out": [
+					{
+						"name": "val",
+						"type": "float"
+					}
+				]
+			}
+		},
+		"floatToVec2_1": {
+			"type": "floatToVec2",
+			"params": {
+				"x": {
+					"overriden_options": {}
+				},
+				"y": {
+					"overriden_options": {}
+				}
+			},
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "x",
+					"node": "round1",
+					"output": "val"
+				}
+			]
+		},
+		"random1": {
+			"type": "random",
+			"params": {
+				"seed": {
+					"overriden_options": {}
+				}
+			},
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "seed",
+					"node": "floatToVec2_1",
+					"output": "vec2"
+				}
+			]
+		},
+		"floatToVec3_1": {
+			"type": "floatToVec3",
+			"params": {
+				"x": {
+					"overriden_options": {}
+				},
+				"y": {
+					"raw_input": 0.71,
+					"overriden_options": {}
+				},
+				"z": {
+					"raw_input": 0.82,
+					"overriden_options": {}
+				}
+			},
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "x",
+					"node": "random1",
+					"output": "rand"
+				}
+			]
+		},
+		"hsvToRgb1": {
+			"type": "hsvToRgb",
+			"params": {
+				"hsv": {
+					"overriden_options": {}
+				}
+			},
+			"inputs": [
+				{
+					"index": 0,
+					"inputName": "hsv",
+					"node": "floatToVec3_1",
+					"output": "vec3"
+				}
+			]
+		}
+	},
+	"persisted_config": {
+		"material": {
+			"metadata": {
+				"version": 4.5,
+				"type": "Material",
+				"generator": "Material.toJSON"
+			},
+			"uuid": "/env/MAT/meshLambertBuilder_INSTANCES-main",
+			"type": "MeshLambertMaterial",
+			"name": "/env/MAT/meshLambertBuilder_INSTANCES",
+			"color": 16711422,
+			"emissive": 0,
+			"reflectivity": 1,
+			"refractionRatio": 0.98,
+			"depthFunc": 3,
+			"depthTest": true,
+			"depthWrite": true,
+			"colorWrite": true,
+			"stencilWrite": false,
+			"stencilWriteMask": 255,
+			"stencilFunc": 519,
+			"stencilRef": 0,
+			"stencilFuncMask": 255,
+			"stencilFail": 7680,
+			"stencilZFail": 7680,
+			"stencilZPass": 7680,
+			"fog": false
+		},
+		"onBeforeCompileDataJSONWithoutShaders": {
+			"paramConfigs": [],
+			"timeDependent": false,
+			"resolutionDependent": false,
+			"raymarchingLightsWorldCoordsDependent": false
+		},
+		"customMaterials": {
+			"customDepthMaterial": {
+				"material": {
+					"metadata": {
+						"version": 4.5,
+						"type": "Material",
+						"generator": "Material.toJSON"
+					},
+					"uuid": "/env/MAT/meshLambertBuilder_INSTANCES-customDepthMaterial",
+					"type": "MeshDepthMaterial",
+					"name": "customDepthMaterial",
+					"side": 1,
+					"depthFunc": 3,
+					"depthTest": true,
+					"depthWrite": true,
+					"colorWrite": true,
+					"stencilWrite": false,
+					"stencilWriteMask": 255,
+					"stencilFunc": 519,
+					"stencilRef": 0,
+					"stencilFuncMask": 255,
+					"stencilFail": 7680,
+					"stencilZFail": 7680,
+					"stencilZPass": 7680,
+					"depthPacking": 3201
+				},
+				"onBeforeCompileDataJSONWithoutShaders": {
+					"paramConfigs": [],
+					"timeDependent": false,
+					"resolutionDependent": false,
+					"raymarchingLightsWorldCoordsDependent": false
+				}
+			},
+			"customDistanceMaterial": {
+				"material": {
+					"metadata": {
+						"version": 4.5,
+						"type": "Material",
+						"generator": "Material.toJSON"
+					},
+					"uuid": "/env/MAT/meshLambertBuilder_INSTANCES-customDistanceMaterial",
+					"type": "MeshDistanceMaterial",
+					"name": "customDistanceMaterial",
+					"depthFunc": 3,
+					"depthTest": true,
+					"depthWrite": true,
+					"colorWrite": true,
+					"stencilWrite": false,
+					"stencilWriteMask": 255,
+					"stencilFunc": 519,
+					"stencilRef": 0,
+					"stencilFuncMask": 255,
+					"stencilFail": 7680,
+					"stencilZFail": 7680,
+					"stencilZPass": 7680
+				},
+				"onBeforeCompileDataJSONWithoutShaders": {
+					"paramConfigs": [],
+					"timeDependent": false,
+					"resolutionDependent": false,
+					"raymarchingLightsWorldCoordsDependent": false
+				}
+			},
+			"customDepthDOFMaterial": {
+				"material": {
+					"metadata": {
+						"version": 4.5,
+						"type": "Material",
+						"generator": "Material.toJSON"
+					},
+					"uuid": "/env/MAT/meshLambertBuilder_INSTANCES-customDepthDOFMaterial",
+					"type": "MeshDepthMaterial",
+					"name": "customDepthDOFMaterial",
+					"depthFunc": 3,
+					"depthTest": true,
+					"depthWrite": true,
+					"colorWrite": true,
+					"stencilWrite": false,
+					"stencilWriteMask": 255,
+					"stencilFunc": 519,
+					"stencilRef": 0,
+					"stencilFuncMask": 255,
+					"stencilFail": 7680,
+					"stencilZFail": 7680,
+					"stencilZPass": 7680,
+					"depthPacking": 3200
+				},
+				"onBeforeCompileDataJSONWithoutShaders": {
+					"paramConfigs": [],
+					"timeDependent": false,
+					"resolutionDependent": false,
+					"raymarchingLightsWorldCoordsDependent": false
+				}
+			}
+		}
+	}
+}

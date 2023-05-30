@@ -1,0 +1,28 @@
+{
+	"type": "copNetwork",
+	"nodes": {
+		"image1": {
+			"type": "image",
+			"params": {
+				"url": "/textures/smiley-g1f8c43a61_1280.jpg?timestamp=1685343267565",
+				"tflipY": 1,
+				"flipY": 1,
+				"ttransform": 1
+			}
+		},
+		"imageEnv": {
+			"type": "imageEXR",
+			"params": {
+				"url": "https://raw.githubusercontent.com/polygonjs/polygonjs-assets/master/textures/resources/polyhaven.com/envmaps/brown_photostudio_05_1k.exr",
+				"tminFilter": 1,
+				"tmagFilter": 1,
+				"tanisotropy": 1,
+				"useRendererMaxAnisotropy": 1
+			}
+		},
+		"envMap": {
+			"type": "envMap",
+			"inputs": ["imageEnv"]
+		}
+	}
+}

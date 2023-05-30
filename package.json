@@ -1,0 +1,24 @@
+{
+  "name": "vite-template-solid",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "polygon": "polygonjs-editor"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.1.1",
+    "vite-plugin-solid": "^2.5.0"
+  },
+  "dependencies": {
+    "@polygonjs/polygonjs": "^1.4.16",
+    "krestianstvo": "^0.2.1",
+    "polygonjs-editor": "1.4.16-1",
+    "solid-js": "^1.6.10",
+    "three": "0.152.2"
+  }
+}

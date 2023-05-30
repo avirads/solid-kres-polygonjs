@@ -1,0 +1,8 @@
+{
+	"type": "root",
+	"nodes": {},
+	"params": {
+		"bgColor": [0, 0, 0],
+		"mainCameraPath": "/geo1/geo1:sopGroup/physicsWorld1/perspectiveCamera_PLAYER1"
+	}
+}

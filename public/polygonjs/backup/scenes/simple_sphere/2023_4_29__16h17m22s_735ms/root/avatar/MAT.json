@@ -1,0 +1,17 @@
+{
+	"type": "materialsNetwork",
+	"nodes": {
+		"meshStandard1": {
+			"type": "meshStandard",
+			"params": {
+				"color": [0.9911020971136257, 0.9911020971136257, 0.9911020971136257],
+				"useMap": 1,
+				"map": "../../../COP/image1",
+				"useEnvMap": 1,
+				"envMap": "../../../COP/envMap",
+				"metalness": 1,
+				"roughness": 0
+			}
+		}
+	}
+}

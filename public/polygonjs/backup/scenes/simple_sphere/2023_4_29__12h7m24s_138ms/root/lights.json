@@ -1,0 +1,105 @@
+{
+	"type": "geo",
+	"nodes": {
+		"hemisphereLight1": {
+			"type": "hemisphereLight",
+			"params": {
+				"intensity": 0.52
+			}
+		},
+		"spotLight1": {
+			"type": "spotLight",
+			"params": {
+				"decay": 0.1,
+				"distance": 10,
+				"castShadow": 1
+			}
+		},
+		"polarTransform1": {
+			"type": "polarTransform",
+			"params": {
+				"center": [0, 0.7, 0],
+				"latitude": 25.2,
+				"depth": 3
+			},
+			"inputs": ["spotLight1"]
+		},
+		"merge1": {
+			"type": "merge",
+			"inputs": ["hemisphereLight1", "polarTransform1"],
+			"flags": {
+				"display": true
+			}
+		}
+	},
+	"params": {
+		"CADLinearTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADAngularTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADCurveAbscissa": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADCurveTolerance": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADDisplayEdges": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADEdgesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADDisplayMeshes": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADMeshesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CADWireframe": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGFacetAngle": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGLinesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGMeshesColor": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		},
+		"CSGWireframe": {
+			"overriden_options": {
+				"callback": "{}"
+			}
+		}
+	},
+	"flags": {
+		"display": true
+	}
+}

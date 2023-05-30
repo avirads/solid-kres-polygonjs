@@ -1,0 +1,10 @@
+{
+	"frame": 25843,
+	"maxFrame": 600,
+	"maxFrameLocked": false,
+	"realtimeState": true,
+	"mainCameraPath": "/geo1/geo1:sopGroup/player",
+	"versions": {
+		"polygonjs": "1.4.15"
+	}
+}

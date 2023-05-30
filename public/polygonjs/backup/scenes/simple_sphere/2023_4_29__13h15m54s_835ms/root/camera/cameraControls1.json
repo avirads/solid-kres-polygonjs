@@ -1,0 +1,23 @@
+{
+	"type": "cameraControls",
+	"nodes": {
+		"firstPersonControls1": {
+			"type": "firstPersonControls",
+			"params": {
+				"colliderObject": "../../../stairs/BVH1",
+				"translateSpeed": 2.3,
+				"jumpStrength": 16,
+				"runSpeedMult": 2.7,
+				"startPosition": [3, 5.4, 3.8000000000000003],
+				"startRotation": [0, -45, 0]
+			}
+		}
+	},
+	"params": {
+		"node": "firstPersonControls1"
+	},
+	"inputs": ["perspectiveCamera_FPS"],
+	"flags": {
+		"display": true
+	}
+}
