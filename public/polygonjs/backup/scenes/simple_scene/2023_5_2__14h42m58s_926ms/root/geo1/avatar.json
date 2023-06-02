@@ -1,0 +1,38 @@
+{
+	"type": "avatar",
+	"polyNode": {
+		"locked": false
+	},
+	"nodes": {
+		"box1": {
+			"type": "box"
+		},
+		"attribCreate1": {
+			"type": "attribCreate",
+			"params": {
+				"class": 1,
+				"type": 1,
+				"name": "krestianstvo",
+				"string": "test-kres-val"
+			},
+			"inputs": ["transform1"]
+		},
+		"subnetOutput1": {
+			"type": "subnetOutput",
+			"inputs": ["attribCreate1"],
+			"flags": {
+				"display": true
+			}
+		},
+		"transform1": {
+			"type": "transform",
+			"params": {
+				"t": [0, 9, 0]
+			},
+			"inputs": ["box1"]
+		}
+	},
+	"flags": {
+		"display": true
+	}
+}

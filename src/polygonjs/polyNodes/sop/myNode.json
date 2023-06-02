@@ -1,0 +1,40 @@
+{
+	"metadata": {"version": {"editor": "1.4.16-1", "polygonjs": "1.4.16"}, "createdAt": 1685686309517},
+	"nodeContext": "sop",
+	"inputs": {"simple": {"min": 1, "max": 1, "names": ["input geometry"]}},
+	"params": [],
+	"nodes": {
+		"MAT": {
+			"type": "materialsNetwork",
+			"nodes": {
+				"meshStandard1": {
+					"type": "meshStandard",
+					"params": {
+						"useMap": true,
+						"map": "../../../../COP/image1",
+						"useEnvMap": true,
+						"envMap": "../../../COP/envMap",
+						"metalness": 1,
+						"roughness": 0
+					}
+				}
+			}
+		},
+		"material1": {
+			"type": "material",
+			"params": {"material": "../MAT/meshStandard1"},
+			"inputs": ["transform1"],
+			"flags": {"display": true}
+		},
+		"sphere1": {"type": "sphere"},
+		"subnetOutput1": {"type": "subnetOutput", "inputs": ["material1"]},
+		"transform1": {"type": "transform", "params": {"t": [0, 3, 0]}, "inputs": ["sphere1"]}
+	},
+	"ui": {
+		"MAT": {"pos": [-250, 200], "selection": ["meshStandard1"], "nodes": {"meshStandard1": {"pos": [0, 0]}}},
+		"material1": {"pos": [-100, 350]},
+		"sphere1": {"pos": [-100, 50]},
+		"subnetOutput1": {"pos": [-100, 500]},
+		"transform1": {"pos": [-100, 200]}
+	}
+}

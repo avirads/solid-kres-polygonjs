@@ -1,0 +1,35 @@
+{
+	"type": "avatar",
+	"polyNode": {
+		"locked": false
+	},
+	"nodes": {
+		"box1": {
+			"type": "box"
+		},
+		"material1": {
+			"type": "material",
+			"params": {
+				"material": "../MAT/meshStandard1"
+			},
+			"inputs": ["transform1"]
+		},
+		"subnetOutput1": {
+			"type": "subnetOutput",
+			"inputs": ["material1"],
+			"flags": {
+				"display": true
+			}
+		},
+		"transform1": {
+			"type": "transform",
+			"params": {
+				"t": [0, 2, 0]
+			},
+			"inputs": ["box1"]
+		}
+	},
+	"flags": {
+		"display": true
+	}
+}

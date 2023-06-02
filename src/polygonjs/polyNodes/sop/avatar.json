@@ -1,0 +1,17 @@
+{
+	"metadata": {"version": {"editor": "1.4.16-1", "polygonjs": "1.4.16"}, "createdAt": 1685729562348},
+	"nodeContext": "sop",
+	"inputs": {"simple": {"min": 1, "max": 1, "names": ["input geometry"]}},
+	"params": [],
+	"nodes": {
+		"attribCreate1": {
+			"type": "attribCreate",
+			"params": {"class": 1, "type": 1, "name": "krestianstvo", "string": "test-kres-val"},
+			"inputs": ["box1_avatar"],
+			"flags": {"display": true}
+		},
+		"box1_avatar": {"type": "box"},
+		"subnetOutput1": {"type": "subnetOutput", "inputs": ["attribCreate1"]}
+	},
+	"ui": {"attribCreate1": {"pos": [0, -50]}, "box1_avatar": {"pos": [0, -200]}, "subnetOutput1": {"pos": [0, 100]}}
+}
