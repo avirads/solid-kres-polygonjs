@@ -1,0 +1,36 @@
+{
+	"type": "avatar",
+	"polyNode": {
+		"locked": false
+	},
+	"nodes": {
+		"box1": {
+			"type": "box",
+			"params": {
+				"sizes": [20, 1, 20],
+				"center": [0, -0.6, 0]
+			}
+		},
+		"material1": {
+			"type": "material",
+			"params": {
+				"material": "../MAT/meshStandard1"
+			},
+			"inputs": ["box1"],
+			"flags": {
+				"display": true
+			}
+		},
+		"subnetOutput1": {
+			"type": "subnetOutput",
+			"inputs": ["material1"]
+		}
+	},
+	"params": {
+		"color": [0, 255, 0]
+	},
+	"flags": {
+		"bypass": true,
+		"display": true
+	}
+}

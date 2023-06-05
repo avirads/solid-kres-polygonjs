@@ -1,14 +1,6 @@
 {
 	"type": "geo",
-	"nodes": {
-		"perspectiveCamera1": {
-			"type": "perspectiveCamera",
-			"params": {
-				"position": [1.9592777685135665, 23.427918620129763, -44.51823488958856],
-				"rotation": [-153.00536959827832, 2.245741916516842, 178.85644719923724]
-			}
-		}
-	},
+	"nodes": {},
 	"params": {
 		"CADLinearTolerance": {
 			"overriden_options": {

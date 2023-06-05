@@ -38,37 +38,53 @@ const loadSceneFromSceneData_simple_scene = async function (options) {
         data: {
           metadata: {
             version: { editor: "1.4.16-1", polygonjs: "1.4.16" },
-            createdAt: 1685728621071,
+            createdAt: 1685958853229,
           },
           nodeContext: "sop",
-          inputs: { simple: { min: 1, max: 1, names: [""] } },
-          params: [],
-          nodes: {
-            attribCreate1: {
-              type: "attribCreate",
-              params: {
-                class: 1,
-                type: 1,
-                name: "krestianstvo",
-                string: "test-kres-val",
-              },
-              inputs: ["transform1"],
+          inputs: { simple: { min: 1, max: 1, names: ["input geometry"] } },
+          params: [
+            {
+              name: "color",
+              type: "color",
+              rawInput: [0, 255, 0],
+              initValue: [0, 0, 0],
+              options: { conversion: "no conversion" },
             },
-            subnetOutput1: {
-              type: "subnetOutput",
-              inputs: ["attribCreate1"],
+          ],
+          nodes: {
+            MAT: {
+              type: "materialsNetwork",
+              nodes: {
+                meshStandard1: {
+                  type: "meshStandard",
+                  params: {
+                    color: [
+                      'ch("../../colorr")',
+                      'ch("../../colorg")',
+                      'ch("../../colorb")',
+                    ],
+                  },
+                },
+              },
+            },
+            box1: { type: "box" },
+            material1: {
+              type: "material",
+              params: { material: "../MAT/meshStandard1" },
+              inputs: ["box1"],
               flags: { display: true },
             },
-            transform1: { type: "transform", inputs: ["box1_avatar"] },
-            box1_avatar: { type: "box" },
-            subnetOutput2: { type: "subnetOutput", inputs: ["subnetOutput1"] },
+            subnetOutput1: { type: "subnetOutput", inputs: ["material1"] },
           },
           ui: {
-            attribCreate1: { pos: [450, 300] },
-            subnetOutput1: { pos: [400, 600] },
-            transform1: { pos: [450, 200] },
-            box1_avatar: { pos: [450, 50] },
-            subnetOutput2: { pos: [600, 600] },
+            MAT: {
+              pos: [-400, 300],
+              selection: ["meshStandard1"],
+              nodes: { meshStandard1: { pos: [0, 0] } },
+            },
+            box1: { pos: [-200, 50] },
+            material1: { pos: [-200, 300] },
+            subnetOutput1: { pos: [-200, 500] },
           },
         },
       },

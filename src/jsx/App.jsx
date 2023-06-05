@@ -1,13 +1,13 @@
-import { createResource, createEffect } from 'solid-js';
-import { createLocalStore } from 'krestianstvo'
+import { createLocalStore, getRandomColor } from 'krestianstvo'
 import { loadScene } from '../js/polygon'
-import  Avatar  from './Avatar'
+import Avatar from './Avatar';
+import { createResource, createEffect } from 'solid-js';
 
-const scene = async () => await loadScene()
+const sceneAndPlayer = async () => await loadScene()
 
-export default function App(props) {
+export default function App2(props) {
 
-  const [polygon_scene] = createResource(scene);
+  const [sa] = createResource(sceneAndPlayer);
 
   const [local, setLocal] = createLocalStore(
     {
@@ -30,7 +30,7 @@ export default function App(props) {
 
 
   createEffect(() => {
-    console.log("Scene: ", polygon_scene())
+    console.log("Scene: ", sa())
   })
 
   createEffect(() => {
@@ -39,16 +39,16 @@ export default function App(props) {
 
   return (
     <>
-      <div>{polygon_scene.loading && "Loading scene..."}</div>
-      <Show when={polygon_scene()}>
+      <div>{sa.loading && "Loading scene..."}</div>
+      <Show when={sa()}>
         <For each={props.selo.storeNode.clients}
           fallback={<div>Loading...</div>}>
           {(item) =>
             <Avatar
               nodeID={item}
               selo={props.selo}
-              polygon_scene={polygon_scene()}
-             />
+              sa={sa()}
+            />
           }
         </For>
       </Show>

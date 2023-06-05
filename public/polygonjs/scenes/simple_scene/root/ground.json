@@ -1,34 +1,20 @@
 {
 	"type": "geo",
 	"nodes": {
+		"box1": {
+			"type": "box",
+			"params": {
+				"sizes": [20, 1, 20]
+			}
+		},
 		"material1": {
 			"type": "material",
 			"params": {
 				"material": "../MAT/meshStandardBuilder1"
 			},
-			"inputs": ["ground_box1"]
-		},
-		"ground_box1": {
-			"type": "box",
-			"params": {
-				"sizes": [100, 1, 100],
-				"center": [0, -0.5, 0]
-			}
-		},
-		"merge1": {
-			"type": "merge",
-			"inputs": ["material1", "polynode_avatar"],
+			"inputs": ["box1"],
 			"flags": {
 				"display": true
-			}
-		},
-		"polynode_avatar": {
-			"type": "avatar",
-			"polyNode": {
-				"locked": true
-			},
-			"flags": {
-				"bypass": true
 			}
 		}
 	},

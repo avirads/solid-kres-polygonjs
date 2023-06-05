@@ -1,17 +1,39 @@
 {
-	"metadata": {"version": {"editor": "1.4.16-1", "polygonjs": "1.4.16"}, "createdAt": 1685729562348},
+	"metadata": {"version": {"editor": "1.4.16-1", "polygonjs": "1.4.16"}, "createdAt": 1685958853229},
 	"nodeContext": "sop",
 	"inputs": {"simple": {"min": 1, "max": 1, "names": ["input geometry"]}},
-	"params": [],
+	"params": [
+		{
+			"name": "color",
+			"type": "color",
+			"rawInput": [0, 255, 0],
+			"initValue": [0, 0, 0],
+			"options": {"conversion": "no conversion"}
+		}
+	],
 	"nodes": {
-		"attribCreate1": {
-			"type": "attribCreate",
-			"params": {"class": 1, "type": 1, "name": "krestianstvo", "string": "test-kres-val"},
-			"inputs": ["box1_avatar"],
+		"MAT": {
+			"type": "materialsNetwork",
+			"nodes": {
+				"meshStandard1": {
+					"type": "meshStandard",
+					"params": {"color": ["ch(\"../../colorr\")", "ch(\"../../colorg\")", "ch(\"../../colorb\")"]}
+				}
+			}
+		},
+		"box1": {"type": "box"},
+		"material1": {
+			"type": "material",
+			"params": {"material": "../MAT/meshStandard1"},
+			"inputs": ["box1"],
 			"flags": {"display": true}
 		},
-		"box1_avatar": {"type": "box"},
-		"subnetOutput1": {"type": "subnetOutput", "inputs": ["attribCreate1"]}
+		"subnetOutput1": {"type": "subnetOutput", "inputs": ["material1"]}
 	},
-	"ui": {"attribCreate1": {"pos": [0, -50]}, "box1_avatar": {"pos": [0, -200]}, "subnetOutput1": {"pos": [0, 100]}}
+	"ui": {
+		"MAT": {"pos": [-400, 300], "selection": ["meshStandard1"], "nodes": {"meshStandard1": {"pos": [0, 0]}}},
+		"box1": {"pos": [-200, 50]},
+		"material1": {"pos": [-200, 300]},
+		"subnetOutput1": {"pos": [-200, 500]}
+	}
 }
