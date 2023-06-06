@@ -8,9 +8,7 @@
 		"ground": "1685964636508",
 		"ground/MAT": "1685944970913",
 		"ground/MAT/meshStandardBuilder1": "1685948035703",
-		"geo": "1685964465627",
-		"geo/avatar": "1685964789246",
-		"geo/avatar/MAT": "1685964465627"
+		"geo": "1685967081654"
 	},
 	"shaders": {
 		"/ground/MAT/meshStandardBuilder1": {

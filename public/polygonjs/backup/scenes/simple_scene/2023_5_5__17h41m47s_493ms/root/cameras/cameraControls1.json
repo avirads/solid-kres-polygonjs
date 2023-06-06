@@ -1,0 +1,21 @@
+{
+	"type": "cameraControls",
+	"nodes": {
+		"cameraOrbitControls1": {
+			"type": "cameraOrbitControls",
+			"params": {
+				"limitAzimuthAngle": "180",
+				"azimuthAngleRange": ["-$PI", "$PI"],
+				"polarAngleRange": [0, "$PI/2"],
+				"target": [0, 0.75, 0]
+			}
+		}
+	},
+	"params": {
+		"node": "cameraOrbitControls1"
+	},
+	"inputs": ["perspectiveCamera1"],
+	"flags": {
+		"display": true
+	}
+}

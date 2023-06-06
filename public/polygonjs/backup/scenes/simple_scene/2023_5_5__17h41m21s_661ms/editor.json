@@ -16,8 +16,8 @@
 						"initLayoutData": {
 							"camera": {
 								"position": {
-									"x": 250,
-									"y": 100
+									"x": 300,
+									"y": -275
 								},
 								"zoom": 1
 							},
@@ -271,7 +271,7 @@
 				"panelTypes": ["params"],
 				"currentPanelIndex": 0,
 				"panel_data": {
-					"active_folder": null,
+					"active_folder": 201,
 					"linkIndex": 1
 				}
 			},
@@ -283,10 +283,10 @@
 			"panel_data": {
 				"camera": {
 					"position": {
-						"x": -170.5183109935023,
-						"y": 83.68529010149746
+						"x": 300,
+						"y": -275
 					},
-					"zoom": 0.6702683514906906
+					"zoom": 0.48892566485780725
 				},
 				"history": {
 					"2": {
@@ -541,11 +541,14 @@
 		},
 		"split_mode": "horizontal"
 	},
-	"currentNodes": ["/geo", "/", "/", "/", "/", "/", "/", "/"],
+	"currentNodes": ["/geo/avatar", "/", "/", "/", "/", "/", "/", "/"],
 	"navigationHistory": {
 		"nodePaths": {
 			"1": [
 				"/geo",
+				"/geo/avatar",
+				"/geo",
+				"/geo/avatar",
 				"/geo",
 				"/",
 				"/ground",
@@ -557,10 +560,11 @@
 				"/ground",
 				"/",
 				"/geo",
+				"/geo/avatar",
 				"/geo",
 				"/",
 				"/geo",
-				"/geo"
+				"/geo/avatar"
 			],
 			"2": ["/"],
 			"3": ["/"],
@@ -571,7 +575,7 @@
 			"8": ["/"]
 		},
 		"index": {
-			"1": 15,
+			"1": 19,
 			"2": 0,
 			"3": 0,
 			"4": 0,

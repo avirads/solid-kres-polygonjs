@@ -1,22 +1,13 @@
 {
 	"type": "geo",
 	"nodes": {
-		"null1": {
-			"type": "null",
+		"hemisphereLight1": {
+			"type": "hemisphereLight",
+			"params": {
+				"intensity": 0.52
+			},
 			"flags": {
 				"display": true
-			}
-		},
-		"avatar": {
-			"type": "avatar",
-			"polyNode": {
-				"locked": true
-			},
-			"params": {
-				"color": [0, 255, 0]
-			},
-			"flags": {
-				"bypass": true
 			}
 		}
 	},

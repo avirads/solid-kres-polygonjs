@@ -1,22 +1,11 @@
 {
 	"type": "geo",
 	"nodes": {
-		"null1": {
-			"type": "null",
-			"flags": {
-				"display": true
-			}
-		},
-		"avatar": {
-			"type": "avatar",
-			"polyNode": {
-				"locked": true
-			},
+		"perspectiveCamera1": {
+			"type": "perspectiveCamera",
 			"params": {
-				"color": [0, 255, 0]
-			},
-			"flags": {
-				"bypass": true
+				"position": [1.9592777685135665, 23.427918620129763, -44.51823488958856],
+				"rotation": [-153.00536959827832, 2.245741916516842, 178.85644719923724]
 			}
 		}
 	},

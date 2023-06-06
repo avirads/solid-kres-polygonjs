@@ -1,22 +1,20 @@
 {
 	"type": "geo",
 	"nodes": {
-		"null1": {
-			"type": "null",
-			"flags": {
-				"display": true
+		"box1": {
+			"type": "box",
+			"params": {
+				"sizes": [20, 1, 20]
 			}
 		},
-		"avatar": {
-			"type": "avatar",
-			"polyNode": {
-				"locked": true
-			},
+		"material1": {
+			"type": "material",
 			"params": {
-				"color": [0, 255, 0]
+				"material": "../MAT/meshStandardBuilder1"
 			},
+			"inputs": ["box1"],
 			"flags": {
-				"bypass": true
+				"display": true
 			}
 		}
 	},

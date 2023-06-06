@@ -11,6 +11,7 @@ import { CameraControlsSopNode } from "@polygonjs/polygonjs/dist/src/engine/node
 import { HemisphereLightSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/HemisphereLight";
 import { MaterialSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/Material";
 import { MaterialsNetworkSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/MaterialsNetwork";
+import { NullSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/Null";
 import { PerspectiveCameraSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/PerspectiveCamera";
 import { SubnetOutputSopNode } from "@polygonjs/polygonjs/dist/src/engine/nodes/sop/SubnetOutput";
 
@@ -25,6 +26,7 @@ export const requiredImports_simple_scene = {
     HemisphereLightSopNode,
     MaterialSopNode,
     MaterialsNetworkSopNode,
+    NullSopNode,
     PerspectiveCameraSopNode,
     SubnetOutputSopNode,
   ],

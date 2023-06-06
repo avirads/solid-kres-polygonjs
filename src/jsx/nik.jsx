@@ -1,57 +1,69 @@
 import { createLocalStore, getRandomColor } from 'krestianstvo'
-import { onMount, onCleanup, createResource, createEffect } from 'solid-js';
-import { loadScene } from '../js/polygon'
+import { loadScene } from './polygon'
 import * as THREE from 'three'
+import { onMount, createResource, createEffect, onCleanup, batch } from 'solid-js';
+
 
 const sceneAndPlayer = async () => await loadScene()
 
 const Avatar = (props) => {
-
   const [local, setLocal] = createLocalStore(
     {
       data: {
-        nodeID: props.nodeID,
         type: 'Node',
+        nodeID: props.nodeID,
         properties: {
-          color: props.color ? props.color : "green",
-          position: props.position ? props.position : { x: 0, y: 1, z: 0 },
           ticking: false,
-          initialize: false,          
+          initialize: false,
+          color: props.color ? props.color : "green",
+          position: props.position ? props.position : { x: 0, y: 0, z: 0 },
+          rotation: props.rotation ? props.rotation : { x: 0, y: 0, z: 0 },
+          scale: props.scale ? props.scale : { x: 0, y: 0, z: 0 },
+          dynamic: props.dynamic ? props.dynamic : false,
+          parentID: props.parentID ? props.parentID : null
         },
+        dynamic: [
+        ]
       },
     },
     props
-  )
+  );
 
-  
+  const createAvatar = (data) => {
 
-
-
-  const createAvatar = () => {
-    if(local.data.properties.color == 'green'){
-      console.log('greeeeeeeeeeen')
-      setLocal("data", "properties", "color", getRandomColor(props.selo));
-      console.log(local.data.properties.color)
-      setLocal("data", "properties", "position", { x: props.selo.random() * 10, y: 1, z: props.selo.random() * 10 })
-    }
-    const color = new THREE.Color( local.data.properties.color )
-    const geo = props.sa.scene.createNode('geo')
-    const avatar = geo.createNode('avatar')
-    let str_node = geo._name+ '/' + avatar._name
-        
-    props.sa.scene.node(str_node).p.color.set([color.r, color.g, color.b])
-    const node = props.sa.scene.node(str_node)
-
-    node.compute().then((cont)=>{
-      let player = props.sa.scene.threejsScene().getObjectByName(local.data.nodeID)
-      player = cont.coreContent().threejsObjects()[0]
-      player.name = local.data.nodeID
-      player.position.x = local.data.properties.position.x + 1
-      player.position.y = 1
-      player.position.z = local.data.properties.position.z
-      })
+    const geometry = new THREE.SphereGeometry(1, 32, 16)
+    const material = new THREE.MeshBasicMaterial({ color: local.data.properties.color });
+    const avatar_instance = new THREE.Mesh(geometry, material)
+    avatar_instance.name = local.data.nodeID
+    avatar_instance.position.set(local.data.properties.position.x, local.data.properties.position.y, local.data.properties.position.z)
+    props.sa.scene.threejsScene().add(avatar_instance)
   }
 
+
+  let moveby = 1, scaleupby = 1.1, scaledownby = 0.9, rotateby = 0.1
+
+  const setRandomColor = () => {
+    let newColor = getRandomColor(props.selo)
+    setLocal("data", "properties", "color", newColor);
+  }
+
+  const initialize = () => {
+    setRandomColor()
+  }
+
+  props.selo.createAction(props.nodeID, "initialize", initialize)
+
+
+  createEffect(() => {
+
+    let player = props.sa.scene.threejsScene().getObjectByName(props.nodeID)
+    let color = local.data.properties.color
+
+    if (player) {
+      player.material.color.setStyle(color)
+    }
+
+  })
 
   createEffect(() => {
 
@@ -63,23 +75,17 @@ const Avatar = (props) => {
 
     if (player) {
 
-      player.matrixAutoUpdate=true      
-
       player.position.x = px
       player.position.y = py
       player.position.z = pz
 
       player.updateMatrix()
-      player.matrixAutoUpdate=false
-  
     }
 
   })
 
-  let moveby = 1
-
   const moveBallByKeys = (data) => {
-    let player = props.sa.scene.threejsScene().getObjectByName(local.data.nodeID)
+    console.log(data)
 
     switch (data[1]) {
       case 'KeyW':
@@ -100,6 +106,26 @@ const Avatar = (props) => {
       case 'KeyE':
         setLocal("data", "properties", "position", "y", (c) => c - moveby)
         break
+      // case 'Minus':
+      //   player.scale.set(scaledownby,scaledownby,scaledownby)
+      //   scaledownby -= 0.1
+      //   break 
+      // case 'Equal':
+      //   player.scale.set(scaleupby,scaleupby,scaleupby)
+      //   scaleupby += 0.1
+      //   break
+      // case 'ArrowUp':
+      //   player.rotation.x = player.rotation.x+rotateby
+      //   break
+      // case 'ArrowDown':
+      //   player.rotation.x = player.rotation.x-rotateby
+      //   break
+      // case 'ArrowLeft':
+      //   player.rotation.y = player.rotation.y+rotateby
+      //   break
+      // case 'ArrowRight':
+      //   player.rotation.y = player.rotation.y-rotateby   
+      //   break
     }
   }
 
@@ -112,12 +138,9 @@ const Avatar = (props) => {
     player.removeFromParent()
   })
 
-
   onMount(() => {
-    console.log("onMount ", local.data.nodeID)
-
+    console.log("I am created! ", local.data.nodeID)
     createAvatar()
-
 
     if (props.nodeID == props.selo.storeVT.moniker_)
       document.onkeydown = function (e) {
@@ -148,7 +171,9 @@ export default function App(props) {
           dynamic: props.dynamic ? props.dynamic : false,
           parentID: props.parentID ? props.parentID : null,
           ticking: false,
-          initialize:false
+          initialize: false
+          // color:'#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'),
+          // position:[Math.random()*10,1,Math.random()*10]
         },
         dynamic: [
         ]

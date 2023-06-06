@@ -1,25 +1,6 @@
 {
 	"type": "geo",
-	"nodes": {
-		"null1": {
-			"type": "null",
-			"flags": {
-				"display": true
-			}
-		},
-		"avatar": {
-			"type": "avatar",
-			"polyNode": {
-				"locked": true
-			},
-			"params": {
-				"color": [0, 255, 0]
-			},
-			"flags": {
-				"bypass": true
-			}
-		}
-	},
+	"nodes": {},
 	"params": {
 		"CADLinearTolerance": {
 			"overriden_options": {
